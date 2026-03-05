@@ -1,10 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gim Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gym Tracker</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .container {
+      width: 400px;
+      background: #1e1e1e;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #login-btn {
+      background: #4CAF50;
+      color: white;
+    }
+
+    #logout-btn {
+      background: #e53935;
+      color: white;
+    }
+
+    #add-workout-btn {
+      background: #2196F3;
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #2a2a2a;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+  </style>
 </head>
+
 <body>
-  <h1>Hello Gim Tracker!</h1>
+
+<div class="container">
+
+  <h1>Gym Tracker</h1>
+
+  <!-- LOGIN -->
+  <section id="auth-section">
+
+    <h2>Login</h2>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+    />
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    />
+
+    <button id="login-btn">
+      Login
+    </button>
+
+    <button
+      id="logout-btn"
+      style="display:none;"
+    >
+      Logout
+    </button>
+
+  </section>
+
+  <!-- APP -->
+  <section
+    id="app-section"
+    style="display:none;"
+  >
+
+    <h2>Your Workouts</h2>
+
+    <ul id="workout-list"></ul>
+
+    <h3>Add Workout</h3>
+
+    <input
+      type="date"
+      id="workout-date"
+    />
+
+    <button id="add-workout-btn">
+      Add Workout
+    </button>
+
+  </section>
+
+</div>
+
+<!-- SCRIPTS -->
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/workouts.js"></script>
+
 </body>
 </html>
