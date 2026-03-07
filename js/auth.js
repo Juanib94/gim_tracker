@@ -1,61 +1,97 @@
-// js/auth.js
+import { supabase } from './supabaseClient.js';
 
-import { supabase } from './supabaseClient.js'
+console.log("auth.js loaded");
 
-const loginBtn = document.getElementById('login-btn')
-const logoutBtn = document.getElementById('logout-btn')
-const emailInput = document.getElementById('email')
-const passwordInput = document.getElementById('password')
+const loginBtn = document.getElementById("login-btn");
+const signupBtn = document.getElementById("signup-btn");
+const logoutBtn = document.getElementById("logout-btn");
 
-const authSection = document.getElementById('auth-section')
-const appSection = document.getElementById('app-section')
+const authSection = document.getElementById("auth-section");
+const appSection = document.getElementById("app-section");
 
+loginBtn.addEventListener("click", login);
+signupBtn.addEventListener("click", signup);
+logoutBtn.addEventListener("click", logout);
 
-// 🔹 Check if user is already logged in
-document.addEventListener('DOMContentLoaded', async () => {
-  const { data: { session } } = await supabase.auth.getSession()
+checkSession();
+
+async function checkSession() {
+
+  const { data: { session } } = await supabase.auth.getSession();
 
   if (session) {
-    showApp()
+    showApp();
+  } else {
+    showLogin();
   }
-})
 
+}
 
-// 🔹 Login
-loginBtn.addEventListener('click', async () => {
-  const email = emailInput.value
-  const password = passwordInput.value
+async function login() {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password
-  })
+  });
 
   if (error) {
-    alert(error.message)
-  } else {
-    showApp()
+    alert(error.message);
+    return;
   }
-})
 
-
-// 🔹 Logout
-logoutBtn.addEventListener('click', async () => {
-  await supabase.auth.signOut()
-  showAuth()
-})
-
-
-// 🔹 UI helpers
-function showApp() {
-  authSection.style.display = 'block'
-  appSection.style.display = 'block'
-  logoutBtn.style.display = 'inline-block'
-  loginBtn.style.display = 'none'
+  showApp();
 }
 
-function showAuth() {
-  appSection.style.display = 'none'
-  logoutBtn.style.display = 'none'
-  loginBtn.style.display = 'inline-block'
+async function signup() {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("User created. You can now login.");
+
+}
+
+async function logout() {
+
+  await supabase.auth.signOut();
+
+  authSection.style.display = "block";
+  appSection.style.display = "none";
+
+  loginBtn.style.display = "block";
+  logoutBtn.style.display = "none";
+
+}
+
+function showApp() {
+
+  authSection.style.display = "none";
+  appSection.style.display = "block";
+
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "block";
+
+}
+
+function showLogin() {
+
+  authSection.style.display = "block";
+  appSection.style.display = "none";
+
+  loginBtn.style.display = "block";
+  logoutBtn.style.display = "none";
+
 }

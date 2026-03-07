@@ -50,6 +50,11 @@
       color: white;
     }
 
+    #signup-btn {
+      background: #9C27B0;
+      color: white;
+    }
+
     #logout-btn {
       background: #e53935;
       color: white;
@@ -82,7 +87,7 @@
   <h1>Gym Tracker</h1>
 
   <!-- LOGIN -->
-  <section id="auth-section">
+  <section id="auth-section" style="display:none;">
 
     <h2>Login</h2>
 
@@ -102,22 +107,21 @@
       Login
     </button>
 
-    <button
-      id="logout-btn"
-      style="display:none;"
-    >
-      Logout
+    <button id="signup-btn">
+      Sign Up
     </button>
 
   </section>
 
   <!-- APP -->
   <section
-    id="app-section"
-    style="display:none;"
-  >
+    id="app-section" style="display:none;">
 
     <h2>Your Workouts</h2>
+
+    <button id="logout-btn">
+        Logout
+    </button>
 
     <ul id="workout-list"></ul>
 
