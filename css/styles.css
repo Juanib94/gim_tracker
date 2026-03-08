@@ -1,0 +1,25 @@
+#pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#prev-btn {
+  margin-right: auto;
+}
+
+#next-btn {
+  margin-left: auto;
+}
+
+#page-indicator {
+  font-weight: bold;
+}
+
+#pagination button,
+#pagination span {
+  display: inline-block;
+}
